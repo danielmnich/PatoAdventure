@@ -6,7 +6,7 @@ const webpack = require('webpack');
 module.exports = {
   devtool: 'cheap-eval-source-map',
   entry: {
-    main: path.join(__dirname, 'js', 'zadanie01.jsx')
+    main: path.join(__dirname, 'src', 'js', 'main.js')
   },
   output: {
     path: path.join(__dirname, 'dist'),
@@ -23,12 +23,12 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx$/,
+        test: /\.jsx|js$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options: {
-            presets: [	'es2015',	'stage-2',	'react'],
+            presets: [	'es2015',	'stage-2'],
             plugins: ["transform-decorators-legacy"]
           }
         }
@@ -39,10 +39,10 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: ['style-loader','css-loader', 'postcss-loader', 'sass-loader'],
+        use: ['style-loader','css-loader', 'sass-loader'],
         use: ExtractTextPlugin.extract({
          fallback: "style-loader",
-         use: ['css-loader', 'postcss-loader', 'sass-loader']
+         use: ['css-loader', 'sass-loader']
        })
      },
      {
